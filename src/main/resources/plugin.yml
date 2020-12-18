@@ -1,0 +1,9 @@
+name: M0-SessionLogger
+main: me.M0dii.SessionLogger.Main
+description: M0-SessionLogger
+version: 1.2
+api-version: 1.16
+author: M0dii
+permissions:
+  m0sessionlogger.log:
+    description: Log player sessions with this permission.
