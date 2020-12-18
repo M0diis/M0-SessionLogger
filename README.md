@@ -11,3 +11,9 @@ To build the plugin yourself, you need JDK 8 or higher installed on your system.
 ```
 gradlew build
 ```
+
+## Spigot
+
+You can find the resource on spigot:
+
+https://www.spigotmc.org/resources/m0-sessionlogger.86838/
