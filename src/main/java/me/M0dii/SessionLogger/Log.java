@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-public class SessionLog
+public class Log
 {
     private final UUID uuid;
     private final String name;
@@ -14,7 +14,7 @@ public class SessionLog
     private int issuedCommands;
     private String joinDate;
     
-    public SessionLog(Player p)
+    public Log(Player p)
     {
         this.uuid = p.getUniqueId();
         this.name = p.getName();

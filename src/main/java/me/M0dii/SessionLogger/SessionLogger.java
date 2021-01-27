@@ -7,15 +7,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 
-public class Main extends JavaPlugin
+public class SessionLogger extends JavaPlugin
 {
-    private static Main plugin;
+    private static SessionLogger plugin;
     
     private PluginManager manager;
     
     private boolean loaded;
     
-    public Main()
+    public SessionLogger()
     {
         this.manager = getServer().getPluginManager();
     }

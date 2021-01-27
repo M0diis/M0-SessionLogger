@@ -3,14 +3,12 @@ package me.M0dii.SessionLogger;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.List;
-
 public class Config
 {
     public static String DATE_FORMAT;
     public static String ENTRY_FORMAT;
     
-    public static void load(Main plugin)
+    public static void load(SessionLogger plugin)
     {
         FileConfiguration cfg = plugin.getConfig();
         

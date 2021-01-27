@@ -1,8 +1,8 @@
 package me.M0dii.SessionLogger;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -10,36 +10,35 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerListener implements Listener
 {
-    private final Main plugin;
+    private final SessionLogger plugin;
     
-    public PlayerListener(Main plugin)
+    public PlayerListener(SessionLogger plugin)
     {
         this.plugin = plugin;
 
-        this.sessionLogs = new ArrayList<>();
+        this.logs = new ArrayList<>();
     }
     
-    private final List<SessionLog> sessionLogs;
+    private final List<Log> logs;
     
     @EventHandler
     public void logIn(PlayerLoginEvent e)
     {
         if(e.getPlayer().hasPermission("m0sessionlogger.log"))
         {
-            this.sessionLogs.add(new SessionLog(e.getPlayer()));
+            this.logs.add(new Log(e.getPlayer()));
         }
     }
     
     @EventHandler
-    public void addCommand(PlayerCommandSendEvent e)
+    public void addCommand(PlayerCommandPreprocessEvent e)
     {
-        for(SessionLog log : sessionLogs)
+        for(Log log : logs)
         {
             if(log.getPlayerUUID() == e.getPlayer().getUniqueId())
             {
@@ -51,9 +50,9 @@ public class PlayerListener implements Listener
     @EventHandler
     public void logOut(PlayerQuitEvent e)
     {
-        SessionLog log = null;
+        Log log = null;
         
-        for(SessionLog lg : sessionLogs)
+        for(Log lg : logs)
         {
             if(lg.getPlayerUUID().equals(e.getPlayer().getUniqueId())) log = lg;
         }
@@ -79,7 +78,7 @@ public class PlayerListener implements Listener
             entry = entry.replaceAll("%played_time%", played);
             entry = entry.replaceAll("%issued_commands%", String.valueOf(log.getIssuedCommands()));
             
-            this.sessionLogs.remove(log);
+            this.logs.remove(log);
             
             this.plugin.logToFile(entry);
         }
