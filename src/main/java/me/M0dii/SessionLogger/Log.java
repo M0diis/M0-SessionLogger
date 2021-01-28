@@ -13,6 +13,7 @@ public class Log
     private final Long joinTime;
     private int issuedCommands;
     private String joinDate;
+    private int vanishedTime;
     
     public Log(Player p)
     {
@@ -22,7 +23,19 @@ public class Log
         this.joinTime = System.currentTimeMillis();
         this.issuedCommands = 0;
         
+        this.vanishedTime = 0;
+        
         this.setJoinDate();
+    }
+    
+    public void addVanishedTime(int time)
+    {
+        this.vanishedTime += time;
+    }
+    
+    public int getVanishedTime()
+    {
+        return this.vanishedTime;
     }
     
     public void issuedCommand()

@@ -1,4 +1,7 @@
 M0-SessionLogger:
   Enabled: true
   DateFormat: 'MM-dd HH:mm:ss'
-  EntryFormat: '[%join_date% - %leave_date%] %player_name% played time: %played_time%, issued commands: %issued_commands%'
+  EntryFormat: '[%join_date% - %leave_date%] %player_name% played time: %played_time%, issued commands: %issued_commands%, vanished for: %vanished_time% sec.'
+  ExcludeCommands:
+    - "/ac"
+    - "/chc"

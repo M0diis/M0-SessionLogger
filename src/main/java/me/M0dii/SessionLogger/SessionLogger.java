@@ -1,5 +1,7 @@
 package me.M0dii.SessionLogger;
 
+import com.earth2me.essentials.IEssentials;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -23,10 +25,19 @@ public class SessionLogger extends JavaPlugin
     FileConfiguration config = null;
     File configFile = null;
     
+    private IEssentials essentials;
+    
+    public IEssentials getEssentials()
+    {
+        return this.essentials;
+    }
+    
     public void onEnable()
     {
         this.configFile = new File(getDataFolder(), "config.yml");
         this.config = YamlConfiguration.loadConfiguration(this.configFile);
+        
+        essentials = (IEssentials) Bukkit.getPluginManager().getPlugin("Essentials");
     
         if(!this.configFile.exists())
         {
